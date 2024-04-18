@@ -2741,12 +2741,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsBetweenSpawning: 1
-  xMinRange: -25
-  xMaxRange: 25
-  yMinRange: 8
-  yMaxRange: 25
-  zMinRange: -25
-  zMaxRange: 25
   spawnObjects:
   - {fileID: 5868608499460236622, guid: 7b4b629afc96cd64eb25059feba968f9, type: 3}
 --- !u!4 &2109565336
