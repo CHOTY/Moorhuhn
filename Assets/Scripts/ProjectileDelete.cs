@@ -8,7 +8,7 @@ public class ProjectileDelete : MonoBehaviour
     void Update() { }
     private void OnCollisionEnter(Collision other)
     {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
     }
 
 }
