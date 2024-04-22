@@ -4,51 +4,87 @@ using UnityEngine;
 
 public class SpawnScript : MonoBehaviour
 {
-    // rozsahy pre umiestnenie
     public float secondsBetweenSpawning = 1f;
 
-    // zoznam objektov, ktoré sa budú vytvárať – naše prefaby
-    public GameObject[] spawnObjects;
 
-    private float nextSpawnTime; // čas, kedy dôjde k vytvoreniu ďalšieho
 
-    // Start is called before the first frame update
+
+    public GameObject[] spawnObjects; //toto nemusí byť array, či chceš spawnovať rôzne variácie (skiny/rýchlostné)?
+
+
+
+
+
+
+    private float nextSpawnTime; //toto by som zmenil aby nebolo zadávané ale tiež náhodné aby tam bola variácia
+
+
+
+
+    public GameObject special;
+    private int randomizer;
     void Start()
     {
         nextSpawnTime = Time.time + secondsBetweenSpawning;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Time.time >= nextSpawnTime)
         {
-            MakeThingToSpawn(); // vytvor dáky objekt
-            nextSpawnTime = Time.time + secondsBetweenSpawning; // vypočítaj ďalší čas
+            randomizer = Random.Range(1, 6);  //nevedel som aké vzácne chcete aby bolo to špeciálne kurča
+            if (randomizer == 4) {
+                if (GameObject.FindGameObjectWithTag("Special") == null){
+                    SpawnSpecial();
+                    nextSpawnTime = Time.time + secondsBetweenSpawning;
+                }
+                else {
+                    MakeThingToSpawn(); 
+                    nextSpawnTime = Time.time + secondsBetweenSpawning;
+                }
+            } 
+            else {
+                MakeThingToSpawn(); 
+                nextSpawnTime = Time.time + secondsBetweenSpawning;
+            }
         }
     }
 
     void MakeThingToSpawn()
     {
         Transform objectTransform = transform;
-
-        // Retrieve the position (x, y, z)
         float x = objectTransform.position.x;
         float y = objectTransform.position.y;
         float z = objectTransform.position.z;
         Vector3 spawnPosition;
-        // definujú sa náhodné súradnice na všetkých osiach z definovaných rozsahov
         spawnPosition.x = x;
         spawnPosition.y = y;
         spawnPosition.z = z;
 
 
-        // vytvorí sa objekt zo zoznamu objektov, ktoré definujeme v editore
-        GameObject spawnedObject = Instantiate(spawnObjects[0],
-                                    spawnPosition, transform.rotation) as GameObject;
 
-        // make the parent the spawner so hierarchy doesn't get super messy 
-        // = vkladá objekty v rámci hierarchie do spawnera
+
+        GameObject spawnedObject = Instantiate(spawnObjects[0],
+                                    spawnPosition, transform.rotation) as GameObject;  //rovnaká otázka ako hore
+
+
+
+
+
+        spawnedObject.transform.parent = gameObject.transform;
+    }
+
+    void SpawnSpecial()
+    {
+        Transform objectTransform = transform;
+        float x = objectTransform.position.x;
+        float y = objectTransform.position.y;
+        float z = objectTransform.position.z;
+        Vector3 spawnPosition;
+        spawnPosition.x = x;
+        spawnPosition.y = y;
+        spawnPosition.z = z;
+        GameObject spawnedObject = Instantiate(special, spawnPosition, transform.rotation) as GameObject;
         spawnedObject.transform.parent = gameObject.transform;
     }
 }

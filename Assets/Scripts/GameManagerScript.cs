@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text timeText;
     public TMP_Text scoreText;
     int score = 0;
-
+    public static int zivoty = 5;
     public static GameManager gm = null; // singleton
 
     void Awake()
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         time = time - Time.deltaTime;
-        if (time <= 0)
+        if (time <= 0 || zivoty <= 0)
             GameOver();
         timeText.text = time.ToString();
     }
