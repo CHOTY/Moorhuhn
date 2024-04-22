@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text timeText;
     public TMP_Text scoreText;
     int score = 0;
+    int lives = 5;
 
     public static GameManager gm = null; // singleton
 
@@ -23,11 +24,20 @@ public class GameManager : MonoBehaviour
           // ktorá nie je tento objekt a ak áno deštrukcia...
     }
 
-    public void ChangeScoreTime(int sc, float t)
+    public void ChangeScore(int sc)
     {
         score += sc;
-        time += t;
-        scoreText.text = "Score: " + score.ToString();
+        Debug.Log(score);
+        // TODO: MENU A ODKOMENTOVAT 
+        //scoreText.text = "Score: " + score.ToString();
+    }
+
+    public void DoDamage(int damage)
+    {
+        lives -= damage;
+        Debug.Log(lives);
+        // TODO: MENU A ODKOMENTOVAT 
+        //scoreText.text = "Score: " + score.ToString();
     }
 
 
@@ -41,13 +51,15 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         time = time - Time.deltaTime;
-        if (time <= 0)
+        if (time <= 0 || lives == 0)
             GameOver();
-        timeText.text = time.ToString();
+        // TODO: MENU A ODKOMENTOVAT 
+        //timeText.text = time.ToString();
     }
 
     void GameOver()
     {
+        //Debug.Log("You Lose");
         //  Scene scene = SceneManager.GetActiveScene();
         //  SceneManager.LoadScene(scene.name);
     }
