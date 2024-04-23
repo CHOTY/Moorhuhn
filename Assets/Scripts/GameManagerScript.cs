@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public float time;
+    public float time = 10;
     public TMP_Text timeText;
     public TMP_Text scoreText;
     int score = 0;
-    public static int zivoty = 5;
+    public int lives = 5;
     public static GameManager gm = null; // singleton
 
     void Awake()
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         time = time - Time.deltaTime;
-        if (time <= 0 || zivoty <= 0)
+        if (time <= 0 || lives <= 0)
             GameOver();
         // TODO: MENU A ODKOMENTOVAT 
         //timeText.text = time.ToString();
