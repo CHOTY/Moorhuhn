@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitDetection : MonoBehaviour
+public class TargetScript : MonoBehaviour
 {
 
-    public int scoreAmount = 0; 
+    public int scoreAmount = 10; 
     void Start() { }
     void Update() { }
     private void OnCollisionEnter(Collision other)
