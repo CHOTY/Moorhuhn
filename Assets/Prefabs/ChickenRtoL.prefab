@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPosition: {x: 10, y: 10, z: 60}
-  rychlost: -15
+  rychlost: -8
   maximum: 18
 --- !u!1001 &4777108493865266014
 PrefabInstance:
