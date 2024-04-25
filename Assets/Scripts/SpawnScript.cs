@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class SpawnScript : MonoBehaviour
 {
-    // rozsahy pre umiestnenie
-    public float secondsBetweenSpawning = 1f;
-    
+
     // zoznam objektov, ktoré sa budú vytvárať – naše prefaby
     public GameObject[] spawnObjects;
 
@@ -14,18 +12,17 @@ public class SpawnScript : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {   
-        
-        nextSpawnTime = Time.time + secondsBetweenSpawning;
+    {
+        nextSpawnTime = Time.time + Random.Range(2, 10);
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+
         if (Time.time >= nextSpawnTime)
         {
-            int randomizer = Random.Range(0, 10);
+            int randomizer = Random.Range(2, 10);
             MakeThingToSpawn(); // vytvor dáky objekt
             nextSpawnTime = Time.time + randomizer; // vypočítaj ďalší čas
         }

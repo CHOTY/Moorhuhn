@@ -8,15 +8,9 @@ public class ChickenDespawn : MonoBehaviour
     void Update() { }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Chick")
+        if (other.gameObject.tag == "Chick" || other.gameObject.tag == "Projectile")
         {
-            Destroy(other.gameObject); 
-            Debug.Log("DESPAWN");
-        }
-        if (other.gameObject.tag == "Projectile")
-        {
-            Destroy(other.gameObject); 
-            Debug.Log("WORKS WITH BULLET");
+            Destroy(other.gameObject);
         }
     }
 }
