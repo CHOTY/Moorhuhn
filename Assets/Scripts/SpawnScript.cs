@@ -20,7 +20,7 @@ public class SpawnScript : MonoBehaviour
     void Update()
     {
 
-        if (Time.time >= nextSpawnTime)
+        if (Time.time >= nextSpawnTime && GameManager.gm.gameStarted)
         {
             int randomizer = Random.Range(2, 10);
             MakeThingToSpawn(); // vytvor dáky objekt

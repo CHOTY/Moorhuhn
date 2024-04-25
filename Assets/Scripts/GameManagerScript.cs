@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public float time = 10;
+    public float time = 0;
+    public bool gameStarted = false;
     public TMP_Text timeText;
     public TMP_Text scoreText;
     int score = 0;
@@ -19,24 +20,33 @@ public class GameManager : MonoBehaviour
         if (gm == null)
         {
             gm = this;
-        } // tu by mohla nasledovať kontrola či neexistuje inštancia, 
-          // ktorá nie je tento objekt a ak áno deštrukcia...
+        }
     }
 
     public void ChangeScore(int sc)
     {
         score += sc;
-        Debug.Log(score);
-        // TODO: MENU A ODKOMENTOVAT 
-        //scoreText.text = "Score: " + score.ToString();
+        scoreText.text = "Score: " + score.ToString();
+    }
+
+    //TODO: VYPNUT TLACIDLO ABY SA NEDALO STLACIT AK JE HRA STARTNUTA
+    //TODO: NEJAKA ODOZVA TYM BUTTONOM NA START A RESTART NAPR. PREHRANIE ZVUKU ALEBO NECH ZASEDNE NIECO TAKE
+    public void StartGame(bool start)
+    {
+        gameStarted = true;
+        time = 100;
+    }
+    //TODO: ABY SA DESPAWNLI SLIEPKY 
+    public void RestartGame(bool start)
+    {
+        gameStarted = true;
+        time = 100;
     }
 
     public void DoDamage(int damage)
     {
         lives -= damage;
         Debug.Log(lives);
-        // TODO: MENU A ODKOMENTOVAT 
-        //scoreText.text = "Score: " + score.ToString();
     }
 
 
@@ -49,18 +59,22 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time = time - Time.deltaTime;
+        Debug.Log(gameStarted);
+        if (time > 0)
+        {
+            time = time - Time.deltaTime;
+            timeText.text = "Time: " + ((int)time).ToString();
+        }
+
         if (time <= 0 || lives <= 0)
             GameOver();
-        // TODO: MENU A ODKOMENTOVAT 
-        //timeText.text = time.ToString();
     }
-
+    //TODO: ABY SA DESPAWNLI SLIEPKY
     void GameOver()
     {
-        //Debug.Log("You Lose");
-        //  Scene scene = SceneManager.GetActiveScene();
-        //  SceneManager.LoadScene(scene.name);
+        gameStarted = false;
+        time = 0;
+        timeText.text = "Time: " + ((int)time).ToString();
     }
 
 }
