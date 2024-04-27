@@ -29,16 +29,26 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score.ToString();
     }
 
-    //TODO: VYPNUT TLACIDLO ABY SA NEDALO STLACIT AK JE HRA STARTNUTA
     //TODO: NEJAKA ODOZVA TYM BUTTONOM NA START A RESTART NAPR. PREHRANIE ZVUKU ALEBO NECH ZASEDNE NIECO TAKE
     public void StartGame(bool start)
     {
+        if (gameStarted == true){
+        }
+        else {
         gameStarted = true;
         time = 100;
+        }
+ 
     }
-    //TODO: ABY SA DESPAWNLI SLIEPKY 
+
     public void RestartGame(bool start)
     {
+        GameObject[] chicks = GameObject.FindGameObjectsWithTag("Chick");
+        foreach (GameObject chick in chicks)
+        {
+            Destroy(chick);
+        }
+
         gameStarted = true;
         time = 100;
     }
@@ -69,9 +79,14 @@ public class GameManager : MonoBehaviour
         if (time <= 0 || lives <= 0)
             GameOver();
     }
-    //TODO: ABY SA DESPAWNLI SLIEPKY
+
     void GameOver()
     {
+        GameObject[] chicks = GameObject.FindGameObjectsWithTag("Chick");
+        foreach (GameObject chick in chicks)
+        {
+            Destroy(chick);
+        }
         gameStarted = false;
         time = 0;
         timeText.text = "Time: " + ((int)time).ToString();
