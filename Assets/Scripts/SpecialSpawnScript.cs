@@ -12,29 +12,39 @@ public class SpecialSpawnScript : MonoBehaviour
 
     public AudioClip spawnSound;
     private AudioSource audioSource;
+    private bool firstSpawn=false;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
         //nextSpawnTime = Time.time + Random.Range(35, 60);
-        nextSpawnTime = 5;
+        nextSpawnTime = 10;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (Time.time >= nextSpawnTime && GameManager.gm.gameStarted)
-        {
-            int randomizer = Random.Range(35, 60);
-            MakeThingToSpawn(); // vytvor dáky objekt
+        if(firstSpawn==false && !GameManager.gm.gameStarted){
+            int randomizer = Random.Range(5, 10);
+            nextSpawnTime = Time.time + randomizer; 
+        }
+        if(GameManager.gm.getSpecialSpawned()){
+            int randomizer = Random.Range(5, 10);
             nextSpawnTime = Time.time + randomizer; // vypočítaj ďalší čas
+        }
+         if (Time.time >= nextSpawnTime && GameManager.gm.gameStarted)
+        {
+            if(!GameManager.gm.getSpecialSpawned()){
+            MakeThingToSpawn(); // vytvor dáky objekt
+            firstSpawn=true;
+            }
         }
     }
 
     void MakeThingToSpawn()
     {
+        GameManager.gm.setSpecialSpawned(true);
         Transform objectTransform = transform;
 
         // Retrieve the position (x, y, z)

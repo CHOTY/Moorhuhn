@@ -12,6 +12,9 @@ public class TargetScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Projectile")
         {
+            if(gameObject.tag=="ChickS"){
+                GameManager.gm.setSpecialSpawned(false);
+            }
             Destroy(gameObject); 
             GameManager.gm.ChangeScore(scoreAmount);
         }

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text timeText;
     public TMP_Text scoreText;
     public TMP_Text livesText;
+    public bool specialSpawned=false;
     int score = 0;
     public int lives = 5;
     public static GameManager gm = null; // singleton
@@ -45,6 +46,11 @@ public class GameManager : MonoBehaviour
     public void RestartGame(bool start)
     {
         GameObject[] chicks = GameObject.FindGameObjectsWithTag("Chick");
+        foreach (GameObject chick in chicks)
+        {
+            Destroy(chick);
+        }
+        chicks=GameObject.FindGameObjectsWithTag("ChickS");
         foreach (GameObject chick in chicks)
         {
             Destroy(chick);
@@ -93,5 +99,10 @@ public class GameManager : MonoBehaviour
         timeText.text = "Time: " + ((int)time).ToString();
         livesText.text = "Lives: " + lives.ToString();
     }
-
+    public void setSpecialSpawned(bool k){
+        specialSpawned=k;    
+    }
+    public bool getSpecialSpawned(){
+        return specialSpawned;    
+    }
 }

@@ -8,6 +8,7 @@ TagManager:
   - PlayerBody
   - EnemyProjectile
   - Chick
+  - ChickS
   layers:
   - Default
   - TransparentFX
