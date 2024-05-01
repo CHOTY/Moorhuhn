@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public bool gameStarted = false;
     public TMP_Text timeText;
     public TMP_Text scoreText;
+    public TMP_Text livesText;
     int score = 0;
     public int lives = 5;
     public static GameManager gm = null; // singleton
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
     public void DoDamage(int damage)
     {
         lives -= damage;
-        Debug.Log(lives);
+        livesText.text = "Lives: " + lives.ToString();
     }
 
 
@@ -69,11 +70,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(gameStarted);
         if (time > 0)
         {
             time = time - Time.deltaTime;
             timeText.text = "Time: " + ((int)time).ToString();
+            livesText.text = "Lives: " + lives.ToString();
         }
 
         if (time <= 0 || lives <= 0)
@@ -90,6 +91,7 @@ public class GameManager : MonoBehaviour
         gameStarted = false;
         time = 0;
         timeText.text = "Time: " + ((int)time).ToString();
+        livesText.text = "Lives: " + lives.ToString();
     }
 
 }

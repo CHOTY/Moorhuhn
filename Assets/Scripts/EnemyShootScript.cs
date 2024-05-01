@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class EnemyShootScript : MonoBehaviour
 {
-    public GameObject projectile;
-    public GameObject shootPoint;
-    public float power = 10.0f; 
+
+    public AudioClip hitSound;
+    private AudioSource audioSource;
+    public AudioClip characterDamageSound;
+    private AudioSource audioSource2;
+
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("LaunchProjectile", 2.0f, 1f);
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource2 = gameObject.AddComponent<AudioSource>();
+        InvokeRepeating("Hit", 5.0f, 5f);
     }
 
     // Update is called once per frame
@@ -19,14 +24,12 @@ public class EnemyShootScript : MonoBehaviour
 
     }
 
-    void LaunchProjectile()
+    void Hit()
     {
-        GameObject newProjectile = Instantiate(projectile,
-                                            shootPoint.transform.position,
-                                            shootPoint.transform.rotation) as GameObject;
-        // nasmerujeme projektil podľa natočenia grabPointu s danou silou
-        newProjectile.GetComponent<Rigidbody>().AddForce(
-                                     shootPoint.transform.forward * power,
-                      ForceMode.VelocityChange);
+        audioSource.volume = 0.25f;
+        audioSource.PlayOneShot(hitSound);
+        GameManager.gm.DoDamage(1);
+        audioSource2.volume = 0.25f;
+        audioSource2.PlayOneShot(characterDamageSound);
     }
 }
