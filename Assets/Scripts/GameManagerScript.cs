@@ -42,7 +42,23 @@ public class GameManager : MonoBehaviour
         }
  
     }
-
+    public void StopHry(bool start)
+    {
+        GameObject[] chicks = GameObject.FindGameObjectsWithTag("Chick");
+        foreach (GameObject chick in chicks)
+        {
+            Destroy(chick);
+        }
+        chicks=GameObject.FindGameObjectsWithTag("ChickS");
+        foreach (GameObject chick in chicks)
+        {
+            Destroy(chick);
+        }
+        specialSpawned = false;
+        gameStarted = false;
+        time = 0;
+        lives = 5;
+    }
     public void RestartGame(bool start)
     {
         GameObject[] chicks = GameObject.FindGameObjectsWithTag("Chick");
@@ -55,8 +71,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(chick);
         }
-
+        specialSpawned = false;
         gameStarted = true;
+        lives = 5;
         time = 100;
     }
 
@@ -94,11 +111,18 @@ public class GameManager : MonoBehaviour
         {
             Destroy(chick);
         }
+        chicks=GameObject.FindGameObjectsWithTag("ChickS");
+        foreach (GameObject chick in chicks)
+        {
+            Destroy(chick);
+        }
+        specialSpawned = false;
         gameStarted = false;
         time = 0;
         timeText.text = "Time: " + ((int)time).ToString();
         livesText.text = "Lives: " + lives.ToString();
     }
+
     public void setSpecialSpawned(bool k){
         specialSpawned=k;    
     }
