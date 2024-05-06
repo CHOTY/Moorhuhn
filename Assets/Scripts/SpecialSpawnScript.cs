@@ -26,11 +26,11 @@ public class SpecialSpawnScript : MonoBehaviour
     void Update()
     {
         if(firstSpawn==false && !GameManager.gm.gameStarted){
-            int randomizer = Random.Range(5, 10);
+            int randomizer = Random.Range(5, 15);
             nextSpawnTime = Time.time + randomizer; 
         }
         if(GameManager.gm.getSpecialSpawned()){
-            int randomizer = Random.Range(5, 10);
+            int randomizer = Random.Range(5, 25);
             nextSpawnTime = Time.time + randomizer; // vypočítaj ďalší čas
         }
          if (Time.time >= nextSpawnTime && GameManager.gm.gameStarted)
