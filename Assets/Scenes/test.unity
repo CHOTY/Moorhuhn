@@ -28445,7 +28445,7 @@ MonoBehaviour:
   projectile: {fileID: 1647818942833282836, guid: cbbe3d79fa4475f49b0ed575126c0e2a, type: 3}
   laser: {fileID: 803440095}
   ammoText: {fileID: 567313725}
-  power: 100
+  power: 500
   shootPoint: {fileID: 500092369}
   grabPoint: {fileID: 248552767}
   reloadSound: {fileID: 8300000, guid: 09aab044bb61f9449bf8a6e87061ace7, type: 3}
@@ -32973,7 +32973,7 @@ MonoBehaviour:
   projectile: {fileID: 1647818942833282836, guid: cbbe3d79fa4475f49b0ed575126c0e2a, type: 3}
   laser: {fileID: 643445300}
   ammoText: {fileID: 54504548}
-  power: 100
+  power: 500
   shootPoint: {fileID: 392359874}
   grabPoint: {fileID: 420822599}
   reloadSound: {fileID: 8300000, guid: 09aab044bb61f9449bf8a6e87061ace7, type: 3}

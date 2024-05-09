@@ -37,8 +37,10 @@ public class GameManager : MonoBehaviour
         if (gameStarted == true){
         }
         else {
+        score = 0;
         gameStarted = true;
         time = 100;
+        scoreText.text = "Score: " + score.ToString();
         }
  
     }
@@ -56,6 +58,8 @@ public class GameManager : MonoBehaviour
         }
         specialSpawned = false;
         gameStarted = false;
+        score = 0;
+        scoreText.text = "Score: " + score.ToString();
         time = 0;
         lives = 5;
     }
@@ -73,6 +77,8 @@ public class GameManager : MonoBehaviour
         }
         specialSpawned = false;
         gameStarted = true;
+        score = 0;
+        scoreText.text = "Score: " + score.ToString();
         lives = 5;
         time = 100;
     }
